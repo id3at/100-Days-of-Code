@@ -10,42 +10,33 @@ def usuwanieKart(kartydousuniecia):
 
 odp_KontynuacjaGry = 'y'
 
-while odp_KontynuacjaGry == 'y' and karty:
+while odp_KontynuacjaGry == 'y' and len(karty) >= 6:
     print(karty)
     karty_gracza = list(random.choices(karty, k=2))
     usuwanieKart(karty_gracza)
     karty_krupiera = list(random.choices(karty, k=2))
     usuwanieKart(karty_krupiera)
-
     print(f'Karty Gracza: {karty_gracza}')
-
+    print(f'Karta Krupiera: {karty_krupiera[0]}')
     petla_wygranej = True
     petla_krupiera = True
 
     while (dobieranie := input("Dobieranie 'y' lub 'n'")) == 'y':
 
-        if dobieranie == 'y' and karty:
-            if len(karty) <= 5:
-              
-                break
-
+        if dobieranie == 'y':
             karta_dobrana = list(random.choices(karty, k=1))
             karty_gracza.append(karta_dobrana[0])
             print(f'Karty Gracza: {karty_gracza}')
-
             usuwanieKart(karta_dobrana)
             if sum(karty_gracza) > 21:
                 print(
                     f'Wygrały karty krupiera {karty_krupiera} Gracz pobrał za duzo kart: {karty_gracza}')
-
                 petla_wygranej = False
                 petla_krupiera = False
                 break
 
     while petla_krupiera:
-        if len(karty) <= 5:
-              
-                break
+
 
         if sum(karty_krupiera) > 21:
             petla_wygranej = False
@@ -61,11 +52,10 @@ while odp_KontynuacjaGry == 'y' and karty:
             usuwanieKart(karta_dobrana)
 
     while petla_wygranej:
-        if len(karty) == 0 or len(karty) <= 5:
-          
-            break
+
         if len(karty_gracza) == 2 and sum(karty_gracza) == 2 and sum(karty_gracza) > sum(karty_krupiera):
-            print(f'Gracz wygrał BlacjJack{karty_gracza} z kartami {karty_krupiera}')
+            print(
+                f'Gracz wygrał BlacjJack{karty_gracza} z kartami {karty_krupiera}')
 
         elif sum(karty_gracza) > sum(karty_krupiera):
             print(f'Gracz wygrał {karty_gracza} z kartami {karty_krupiera}')
@@ -81,6 +71,5 @@ while odp_KontynuacjaGry == 'y' and karty:
 
     odp_KontynuacjaGry = input("Kontynuować grę")
 
-    if len(karty) == 0 or len(karty) <= 5:
-        print("Koniec Tali")
-        break
+if len(karty) >= 6:
+    print("Koniec Talii")
