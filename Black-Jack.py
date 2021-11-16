@@ -1,7 +1,8 @@
 import random
 
-karty = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10] * 4
 
+karty = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10] * 4
+czysta_talia = karty.copy()
 
 def usuwanieKart(kartydousuniecia):
     for t in kartydousuniecia:
@@ -71,5 +72,11 @@ while odp_KontynuacjaGry == 'y' and len(karty) >= 6:
 
     odp_KontynuacjaGry = input("Kontynuować grę")
 
-if len(karty) >= 6:
-    print("Koniec Talii")
+    if len(karty) <= 6:
+        dobieranieTali = input("Koniec Talii. Czy chcesz pobrać nową talie? 'y' lun 'n': ")
+        if dobieranieTali == 'y':
+            for t in czysta_talia:
+                karty.append(t)
+        else:
+            break
+
